@@ -1,0 +1,35 @@
+[package]
+name = "twilio-data"
+version = "0.1.0"
+authors = ["Douman <douman@gmx.se>"]
+edition = "2018"
+description = "Twilio API data structures"
+readme = "README.md"
+repository = "https://github.com/DoumanAsh/twilio-data"
+license = "BSL-1.0"
+keywords = ["twilio"]
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE"
+]
+
+[dependencies.str-buf]
+version = "2"
+
+[dependencies.serde]
+version = "1"
+default-features = false
+features = ["derive"]
+
+[dependencies.form_urlencoded]
+version = "1.0.1"
+
+[dev-dependencies.serde_urlencoded]
+version = "0.7"
+
+[dev-dependencies.ureq]
+version = "2"
+default-features = false
+features = ["tls", "json"]
