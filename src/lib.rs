@@ -548,7 +548,7 @@ pub struct CallResult {
     ///Timestamp (including zone) of when call is finished.
     pub end_time: Option<String>,
     ///Call's direction.
-    pub direction: CallDirection,
+    pub direction: Option<CallDirection>,
     #[serde(deserialize_with = "deserialize_number_from_any")]
     ///The wait time in milliseconds before call is started.
     pub queue_time: i64
