@@ -505,6 +505,20 @@ pub struct SmsResult {
     pub date_updated: String,
 }
 
+fn deserialize_number_from_any<'de, D: serde::de::Deserializer<'de>>(deserializer: D) -> Result<i64, D::Error> {
+    #[derive(Deserialize)]
+    #[serde(untagged)]
+    enum StringOrInt {
+        String(String),
+        Number(i64),
+    }
+
+    match StringOrInt::deserialize(deserializer)? {
+        StringOrInt::String(s) => s.parse::<i64>().map_err(serde::de::Error::custom),
+        StringOrInt::Number(i) => Ok(i),
+    }
+}
+
 #[derive(Debug, Deserialize)]
 ///Result of correct SMS request.
 pub struct CallResult {
@@ -535,6 +549,7 @@ pub struct CallResult {
     pub end_time: Option<String>,
     ///Call's direction.
     pub direction: CallDirection,
+    #[serde(deserialize_with = "deserialize_number_from_any")]
     ///The wait time in milliseconds before call is started.
     pub queue_time: i64
 }
