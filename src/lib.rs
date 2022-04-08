@@ -520,7 +520,7 @@ pub struct CallResult {
     ///Status of message.
     pub status: CallStatus,
     ///Caller's name
-    pub caller_name: String,
+    pub caller_name: Option<String>,
     ///Call's duration.
     pub duration: Option<i64>,
     ///Cost of call
