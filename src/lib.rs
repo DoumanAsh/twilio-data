@@ -550,3 +550,13 @@ pub struct TwilioError {
     ///Corresponding HTTP status code
     pub status: usize,
 }
+
+impl fmt::Display for TwilioError {
+    #[inline(always)]
+    fn fmt(&self, fmt: &mut fmt::Formatter) -> fmt::Result {
+        fmt.write_fmt(format_args!("Twilio API responded with status={}, code={}, message: {}", self.status, self.code, self.message))
+    }
+}
+
+impl std::error::Error for TwilioError {
+}
