@@ -486,7 +486,7 @@ pub struct SmsResult {
     pub body: String,
     ///ID of message
     ///
-    ///Can be used to query SMS via following link:
+    ///Can be used to query SMS information via following link:
     ///`/2010-04-01/Accounts/{account_sid}/Messages/{sid}.json`
     pub sid: String,
     ///Status of message.
@@ -498,7 +498,9 @@ pub struct SmsResult {
     ///Currency unit of `cost`.
     pub price_unit: String,
     ///Timestamp (including zone) of when message is created.
-    pub date_created: String,
+    ///
+    ///Can be None, despite it obviously not making sense
+    pub date_created: Option<String>,
     ///Timestamp (including zone) of when message is sent.
     pub date_sent: Option<String>,
     ///Timestamp (including zone) of when message is updated.
@@ -528,7 +530,7 @@ pub struct CallResult {
     pub to: String,
     ///ID of call
     ///
-    ///Can be used to query SMS via following link:
+    ///Can be used to query Call information via following link:
     ///`/2010-04-01/Accounts/{account_sid}/Calls/{sid}.json`
     pub sid: String,
     ///Status of message.
@@ -542,7 +544,9 @@ pub struct CallResult {
     ///Currency unit of `cost`.
     pub price_unit: String,
     ///Timestamp (including zone) of when call is created.
-    pub date_created: String,
+    ///
+    ///Can be None, despite it obviously not making sense
+    pub date_created: Option<String>,
     ///Timestamp (including zone) of when call is established.
     pub start_time: Option<String>,
     ///Timestamp (including zone) of when call is finished.
@@ -553,7 +557,6 @@ pub struct CallResult {
     ///The wait time in milliseconds before call is started.
     pub queue_time: i64
 }
-
 
 #[derive(Debug, Deserialize)]
 ///Error returned by Twilio REST API.
